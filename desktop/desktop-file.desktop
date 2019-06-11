@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=My Super Snap
+Comment=My Super Snap
+Exec=my-super-snap
+Icon=/usr/share/icons/icon.png
+Categories=Game;
+Terminal=false
+StartupNotify=true
+StartupWMClass=SuperSnap.exe
+Keywords=game
