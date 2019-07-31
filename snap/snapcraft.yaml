@@ -1,8 +1,10 @@
 name: my-super-snap
 version: '0.1'
+icon: desktop/icon.png
 summary: My Super Snap
 description: >
   My Super Snap running in WINE.
+
 grade: stable
 confinement: strict
 base: core18
@@ -11,17 +13,13 @@ architectures:
   - build-on: amd64
   - build-on: i386
 
-layout:
-  /usr/share/libdrm:
-    bind: $SNAP/usr/share/libdrm
-
 environment:
   INSTALL_URL: "<<INSERT URL TO PUBLICLY AVAILABLE INSTALLER>>"
   TRICKS: "corefonts vcrun2017"
   WINEPREFIX: "$SNAP_USER_COMMON/.wine"
-  DLLOVERRIDES: "mscoree=,mshtml=" # Prevent pop-ups about Wine Mono and Wine Gecko
+  DLLOVERRIDES: "mscoree,mshtml=" # Prevent pop-ups about Wine Mono and Wine Gecko
   LC_ALL: "C.UTF-8"
-  SNAP_TITLE: "Super Snap"
+  SNAP_TITLE: "$SNAPCRAFT_PROJECT_SUMMARY"
   SNAP_ICON: "$SNAP/meta/gui/icon.png"
   SNAP_SUPPORT_URL: "<<INSERT SUPPORT URL HERE>>"
 
