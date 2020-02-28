@@ -234,7 +234,7 @@ export DXVK_CONFIG_FILE="$SNAP_USER_COMMON/dxvk.conf"
 # XKB config
 export XKB_CONFIG_ROOT="$SNAP/usr/share/X11/xkb"
 
-SYSTEM_WGETRC="$SNAP/etc/wgetrc"
+export SYSTEM_WGETRC="$SNAP/etc/wgetrc"
 
 # Give XOpenIM a chance to locate locale data.
 # This is required for text input to work in SDL2 games.
