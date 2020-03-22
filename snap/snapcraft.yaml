@@ -43,7 +43,7 @@ apps:
       - wayland
       - x11
   enable-dxvk:
-    command: bin/sommelier $SNAP/dxvk/setup_dxvk.sh install --without-dxgi
+    command: bin/sommelier setup-dxvk install --without-dxgi
     plugs:
       - bluez
       - desktop
@@ -60,7 +60,7 @@ apps:
       - wayland
       - x11
   wineboot:
-    command: bin/sommelier $SNAP/bin/wineboot
+    command: bin/sommelier wineboot
     plugs:
       - desktop
       - desktop-legacy
@@ -68,7 +68,7 @@ apps:
       - wayland
       - x11
   winecfg:
-    command: bin/sommelier $SNAP/bin/winecfg
+    command: bin/sommelier winecfg
     plugs:
       - desktop
       - desktop-legacy
@@ -76,7 +76,7 @@ apps:
       - wayland
       - x11
   winetricks:
-    command: bin/sommelier $SNAP/bin/winetricks prefix="$WINEPREFIX"
+    command: bin/sommelier winetricks prefix="$WINEPREFIX"
     plugs:
       - desktop
       - desktop-legacy
