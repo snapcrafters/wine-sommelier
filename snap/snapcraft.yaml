@@ -38,7 +38,7 @@ apps:
       - network-bind
       - opengl
       - process-control
-      - pulseaudio
+      - audio-playback
       - screen-inhibit-control
       - wayland
       - x11
@@ -55,7 +55,7 @@ apps:
       - network-bind
       - opengl
       - process-control
-      - pulseaudio
+      - audio-playback
       - screen-inhibit-control
       - wayland
       - x11
@@ -64,7 +64,7 @@ apps:
     plugs:
       - desktop
       - desktop-legacy
-      - pulseaudio
+      - audio-playback
       - wayland
       - x11
   winecfg:
@@ -72,7 +72,7 @@ apps:
     plugs:
       - desktop
       - desktop-legacy
-      - pulseaudio
+      - audio-playback
       - wayland
       - x11
   winetricks:
@@ -81,7 +81,7 @@ apps:
       - desktop
       - desktop-legacy
       - network
-      - pulseaudio
+      - audio-playback
       - wayland
       - x11
 
