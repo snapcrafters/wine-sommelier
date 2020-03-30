@@ -73,7 +73,7 @@ function install_app() {
   # Install DXVK if ENABLE_DXVK is set to true
   if [ "$ENABLE_DXVK" = "true" ]; then
     TRICK='dxvk'
-    "${WINETRICKS}" --unattended prefix="$WINEPREFIX" "${TRICK}"
+    "${WINETRICKS}" --unattended prefix="$WINEPREFIX" "${TRICK}" | \
     yad --progress --title="Installing ${TRICK}" --width=400 --center --no-buttons --auto-close --auto-kill --on-top --pulsate
   fi
 
