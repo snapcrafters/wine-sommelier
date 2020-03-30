@@ -24,6 +24,11 @@ fi
 # Set $REALHOME to the users real home directory
 REALHOME="$(getent passwd $UID | cut -d ':' -f 6)"
 
+# Enable esync if $ENABLE_ESYNC is set to true
+if [ "$ENABLE_ESYNC" = "true" ]; then
+  export WINEESYNC=1 
+fi
+
 # https://stackoverflow.com/questions/4023830/how-to-compare-two-strings-in-dot-separated-version-format-in-bash
 vercomp() {
     if [[ $1 == $2 ]]
@@ -63,6 +68,13 @@ function install_app() {
       "${WINETRICKS}" --unattended prefix="$WINEPREFIX" "${TRICK}" | \
       yad --progress --title="Installing ${TRICK}" --width=400 --center --no-buttons --auto-close --auto-kill --on-top --pulsate
     done
+  fi
+
+  # Install DXVK if ENABLE_DXVK is set to true
+  if [ "$ENABLE_DXVK" = "true" ]; then
+    TRICK='dxvk'
+    "${WINETRICKS}" --unattended prefix="$WINEPREFIX" "${TRICK}"
+    yad --progress --title="Installing ${TRICK}" --width=400 --center --no-buttons --auto-close --auto-kill --on-top --pulsate
   fi
 
   # Modify or remove this as required by your application.
