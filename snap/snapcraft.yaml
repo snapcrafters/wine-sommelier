@@ -30,6 +30,7 @@ apps:
     command: bin/sommelier "$WINEPREFIX/drive_c/Program Files/SuperSnap/SuperSnap.exe"
     desktop: usr/share/applications/desktop-file.desktop
     plugs:
+      - audio-playback
       - bluez
       - desktop
       - desktop-legacy
@@ -40,50 +41,32 @@ apps:
       - network-bind
       - opengl
       - process-control
-      - audio-playback
-      - screen-inhibit-control
-      - wayland
-      - x11
-  enable-dxvk:
-    command: bin/sommelier $SNAP/dxvk/setup_dxvk.sh install --without-dxgi
-    plugs:
-      - bluez
-      - desktop
-      - desktop-legacy
-      - hardware-observe
-      - home
-      - joystick
-      - network
-      - network-bind
-      - opengl
-      - process-control
-      - audio-playback
       - screen-inhibit-control
       - wayland
       - x11
   wineboot:
     command: bin/sommelier $SNAP/bin/wineboot
     plugs:
+      - audio-playback
       - desktop
       - desktop-legacy
-      - audio-playback
       - wayland
       - x11
   winecfg:
     command: bin/sommelier $SNAP/bin/winecfg
     plugs:
+      - audio-playback
       - desktop
       - desktop-legacy
-      - audio-playback
       - wayland
       - x11
   winetricks:
     command: bin/sommelier $SNAP/bin/winetricks prefix="$WINEPREFIX"
     plugs:
+      - audio-playback
       - desktop
       - desktop-legacy
       - network
-      - audio-playback
       - wayland
       - x11
 
