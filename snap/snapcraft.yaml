@@ -22,12 +22,15 @@ environment:
   SNAP_TITLE: "$SNAPCRAFT_PROJECT_SUMMARY"
   SNAP_ICON: "$SNAP/meta/gui/icon.png"
   SNAP_SUPPORT_URL: "<<INSERT SUPPORT URL HERE>>"
+  ENABLE_DXVK: 'true'
+  ENABLE_ESYNC: 'true'
 
 apps:
   super-snap:
     command: bin/sommelier "$WINEPREFIX/drive_c/Program Files/SuperSnap/SuperSnap.exe"
     desktop: usr/share/applications/desktop-file.desktop
     plugs:
+      - audio-playback
       - bluez
       - desktop
       - desktop-legacy
@@ -38,50 +41,32 @@ apps:
       - network-bind
       - opengl
       - process-control
-      - pulseaudio
-      - screen-inhibit-control
-      - wayland
-      - x11
-  enable-dxvk:
-    command: bin/sommelier setup-dxvk install --without-dxgi
-    plugs:
-      - bluez
-      - desktop
-      - desktop-legacy
-      - hardware-observe
-      - home
-      - joystick
-      - network
-      - network-bind
-      - opengl
-      - process-control
-      - pulseaudio
       - screen-inhibit-control
       - wayland
       - x11
   wineboot:
     command: bin/sommelier wineboot
     plugs:
+      - audio-playback
       - desktop
       - desktop-legacy
-      - pulseaudio
       - wayland
       - x11
   winecfg:
     command: bin/sommelier winecfg
     plugs:
+      - audio-playback
       - desktop
       - desktop-legacy
-      - pulseaudio
       - wayland
       - x11
   winetricks:
     command: bin/sommelier winetricks prefix="$WINEPREFIX"
     plugs:
+      - audio-playback
       - desktop
       - desktop-legacy
       - network
-      - pulseaudio
       - wayland
       - x11
 
@@ -110,22 +95,6 @@ parts:
     build-packages:
       - software-properties-common
       - wget
-
-  dxvk:
-    plugin: dump
-    source: https://github.com/doitsujin/dxvk/releases/download/v1.2/dxvk-1.2.tar.gz
-    override-pull: |
-      DOWNLOAD_URL="$(curl --silent https://api.github.com/repos/doitsujin/dxvk/releases/latest | jq .assets[0].browser_download_url | sed -e 's/"//g')"
-      if [ -n "$DOWNLOAD_URL" ]; then
-        curl --silent -L "$DOWNLOAD_URL" | tar zx --strip-components=1
-      fi
-    build-packages:
-      - curl
-      - jq
-    organize:
-      setup_dxvk.sh: dxvk/setup_dxvk.sh
-      x32: dxvk/x32
-      x64: dxvk/x64
 
   wine-runtime:
     plugin: nil
