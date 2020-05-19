@@ -477,7 +477,7 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
 fi
 
 # Initialise wine
-if [ ! -f "${WINEPREFIX}/drive_c/windows/win.ini" ]; then
+if [ ! -f "${WINEPREFIX}/drive_c/windows/win.ini" ] && [ ! -f "${WINEPREFIX}/drive_c/windows/system.ini" ]; then
   # Splash
   yad --timeout=90 --timeout-indicator=bottom --text="${NOTICE}" --image="${SNAP_ICON}" --no-escape --width=460 --no-buttons --splash &
   # Create the WINE environment
