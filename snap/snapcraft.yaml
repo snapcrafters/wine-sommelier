@@ -45,7 +45,7 @@ apps:
       - wayland
       - x11
   wineboot:
-    command: bin/sommelier $SNAP/bin/wineboot
+    command: bin/sommelier wineboot
     plugs:
       - audio-playback
       - desktop
@@ -53,7 +53,7 @@ apps:
       - wayland
       - x11
   winecfg:
-    command: bin/sommelier $SNAP/bin/winecfg
+    command: bin/sommelier winecfg
     plugs:
       - audio-playback
       - desktop
@@ -61,7 +61,7 @@ apps:
       - wayland
       - x11
   winetricks:
-    command: bin/sommelier $SNAP/bin/winetricks prefix="$WINEPREFIX"
+    command: bin/sommelier winetricks prefix="$WINEPREFIX"
     plugs:
       - audio-playback
       - desktop

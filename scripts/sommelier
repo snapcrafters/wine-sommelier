@@ -497,10 +497,18 @@ fi
 
 # Launch wineboot/winecfg/winetricks if requested.
 # If the executable exists then launch it otherwise install it then lauch it.
-if [[ "${WINE_EXE}" = *"winecfg"* ]] || [[ "${WINE_EXE}" = *"wineboot"* ]] || [[ "${WINE_EXE}" = *"winetricks"* ]] || [[ "${WINE_EXE}" = *"winedbg"* ]] || [[ "${WINE_EXE}" = *"setup_dxvk.sh"* ]]; then
-  "${WINE_EXE}" "${WINE_EXE_ARGS[@]}"
-elif [ -f "$SNAP/version" ] && vercomp "$(cat "$SNAP_USER_COMMON/version" 2>/dev/null)" "$(cat "$SNAP/version" 2>/dev/null)" || [ ! -e "$WINE_EXE" ]; then
-  install_app
-else
-  launch_app
-fi
+case "${WINE_EXE}" in
+  "winetricks"|"setup-dxvk")
+    "${SNAP}/bin/${WINE_EXE}" "${WINE_EXE_ARGS[@]}"
+    ;;
+  "wineboot"|"winecfg"|"winedbg")
+    "${WINEVERPATH}/bin/${WINE_EXE}" "${WINE_EXE_ARGS[@]}"
+    ;;
+  *)
+    if [ -f "$SNAP/version" ] && vercomp "$(cat "$SNAP_USER_COMMON/version" 2>/dev/null)" "$(cat "$SNAP/version" 2>/dev/null)" || [ ! -e "$WINE_EXE" ]; then
+      install_app
+    else
+      launch_app
+    fi
+    ;;
+esac
